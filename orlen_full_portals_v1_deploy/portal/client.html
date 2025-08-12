@@ -1,0 +1,54 @@
+<!doctype html><html lang='en'><head><title>Orlen — Client</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/site.js"></script>
+<script src="../assets/portals.js"></script>
+</head><body data-page='client'>
+<header class="header">
+  <div class="container nav">
+    <div class="brand"><img src="../assets/orlen-logo.svg" style="height:26px" alt="Orlen"> <small>Portals</small></div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign up</a>
+      <a href="../index.html">Public site</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="small" data-identity></div>
+    <a class="btn" data-logout href="javascript:void(0)">Logout</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1>Client portal</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h3>New request</h3>
+        <form data-new-request>
+          <label>Category</label>
+          <select class="input" name="category">
+            <option>Fine Dining</option><option>Private Driver</option><option>Wellness</option>
+            <option>Whistler & Ski</option><option>Events</option><option>Property & Staff</option>
+          </select>
+          <div class="grid-2">
+            <div><label>Guests</label><input class="input" type="number" name="guests" value="2"></div>
+            <div><label>Budget (CAD)</label><input class="input" name="budget" placeholder="e.g. 300"></div>
+          </div>
+          <div class="grid-2">
+            <div><label>Date</label><input class="input" type="date" name="date"></div>
+            <div><label>Time</label><input class="input" type="time" name="time"></div>
+          </div>
+          <label>Notes</label><textarea class="input" rows="4" name="notes" placeholder="Allergies, preferences, constraints…"></textarea>
+          <div style="margin-top:10px"><button class="btn primary" type="submit">Create</button></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3>My requests</h3>
+        <div data-my-requests></div>
+      </div>
+    </div>
+  </section>
+</main>
+</body></html>

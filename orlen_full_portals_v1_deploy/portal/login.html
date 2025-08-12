@@ -1,0 +1,40 @@
+<!doctype html><html lang='en'><head><title>Orlen — Login</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/site.js"></script>
+<script src="../assets/portals.js"></script>
+</head><body data-page='login'>
+<header class="header">
+  <div class="container nav">
+    <div class="brand"><img src="../assets/orlen-logo.svg" style="height:26px" alt="Orlen"> <small>Portals</small></div>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign up</a>
+      <a href="../index.html">Public site</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="small" data-identity></div>
+    <a class="btn" data-logout href="javascript:void(0)">Logout</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero grid-2">
+    <div>
+      <h1>Welcome back</h1>
+      <p class="lead">Sign in as client, partner, or admin.</p>
+      <div class="card">
+        <form data-login>
+          <label>Email</label><input class="input" name="email" type="email" placeholder="you@domain.com" required>
+          <label>Password</label><input class="input" name="password" type="password" required>
+          <div style="display:flex;gap:8px;margin-top:12px"><button class="btn primary" type="submit">Login</button><a class="btn" href="signup.html">Create account</a></div>
+        </form>
+        <p class="small" style="margin-top:10px">Demo accounts — client: <code>alice@demo.co / orlen123</code>, partner: <code>partner@demo.co / orlen123</code>, admin: <code>admin@orlen.co / admin123</code></p>
+      </div>
+    </div>
+    <div class="hero-visual"></div>
+  </section>
+</main>
+</body></html>
