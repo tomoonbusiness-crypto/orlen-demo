@@ -23,6 +23,685 @@
     .lead{color:#C9CEDA}
     table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--border);padding:8px;text-align:left}
     code{background:#1a1c23;border:1px solid #2b3040;border-radius:6px;padding:2px 6px}
+
+    /* === PATCH UX/ACCESSIBILITÉ === */
+    :root { --focus-ring: #DFA437; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce){
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+    a, .btn, button, input, select, textarea {
+      transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+    }
+    *:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+    .btn:active { transform: translateY(1px); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Toggle langue -->
+  <div class="container" style="display:flex;justify-content:flex-end;padding:8px 0">
+    <button id="langToggle" class="btn" type="button" aria-label="Switch language">EN</button>
+  </div>
+
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <div style="width:26px;height:26px;border-radius:50%;border:2px solid #D4AF37;"></div>
+      <span>ORLEN <small style="color:#9EA2AF">Vancouver</small></span>
+    </div>
+    <nav>
+      <a href="#/" data-nav data-i18n="nav.home">Home</a>
+      <a href="#/services" data-nav data-i18n="nav.services">Services</a>
+      <a href="#/membership" data-nav data-i18n="nav.membership">Membership</a>
+      <a href="#/request" data-nav data-i18n="nav.request">Request</a>
+      <a href="#/contact" data-nav data-i18n="nav.contact">Contact</a>
+      <a href="#/login" data-nav data-i18n="nav.login">Login</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="kicker" data-identity></div>
+  </div>
+</header>
+
+<main class="container" id="app">
+  <!-- HOME -->
+  <section data-view="home" class="view">
+    <section class="hero">
+      <div class="grid-2">
+        <div>
+          <div class="kicker">Sea-to-Sky</div>
+          <h1 data-i18n="hero.title">Effortless access to the exceptional.</h1>
+          <p class="lead" data-i18n="hero.lead">Priority dining, private drivers, wellness & clinics, Whistler escapes — handled discreetly and fast.</p>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="btn primary" href="#/request" data-i18n="hero.ctaPrimary">Create a request</a>
+            <a class="btn" href="#/membership" data-i18n="hero.ctaSecondary">Membership</a>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+            <span class="badge" data-i18n="badge.discretion">Discretion-by-design</span>
+            <span class="badge" data-i18n="badge.response">16 min avg. response</span>
+            <span class="badge" data-i18n="badge.verified">Verified partners</span>
+          </div>
+        </div>
+        <div class="hero-visual" id="heroVisual"></div>
+      </div>
+    </section>
+    <section class="section">
+      <h2 data-i18n="home.signature">Signature Experiences</h2>
+      <div class="grid-3">
+        <div class="card"><h3 data-i18n="home.card1.t">Lions Gate Night Drive</h3><p data-i18n="home.card1.d">Chauffeur across the bridge, private dinner in West Vancouver.</p></div>
+        <div class="card"><h3 data-i18n="home.card2.t">Stanley Park Sunrise</h3><p data-i18n="home.card2.d">Seawall cycling + curated breakfast overlooking the harbour.</p></div>
+        <div class="card"><h3 data-i18n="home.card3.t">Coal Harbour Yacht Hour</h3><p data-i18n="home.card3.d">Sunset aperitivo aboard with sommelier-selected wines.</p></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- SERVICES -->
+  <section data-view="services" class="view" hidden>
+    <h1 data-i18n="services.title">Services</h1>
+    <div class="grid-3">
+      <div class="card"><h3 data-i18n="svc.dine.t">Fine Dining</h3><p data-i18n="svc.dine.d">Priority reservations, tasting menus, private rooms.</p></div>
+      <div class="card"><h3 data-i18n="svc.driver.t">Private Driver</h3><p data-i18n="svc.driver.d">YVR transfers, hourly chauffeur, SUVs & sedans.</p></div>
+      <div class="card"><h3 data-i18n="svc.well.t">Wellness</h3><p data-i18n="svc.well.d">Spas & clinics, in-suite treatments, confidentiality.</p></div>
+      <div class="card"><h3 data-i18n="svc.whistler.t">Whistler & Ski</h3><p data-i18n="svc.whistler.d">Transport, passes, rentals, guides.</p></div>
+      <div class="card"><h3 data-i18n="svc.events.t">Events</h3><p data-i18n="svc.events.d">Tickets & boxes, curated evenings.</p></div>
+      <div class="card"><h3 data-i18n="svc.property.t">Property & Staff</h3><p data-i18n="svc.property.d">Private chef, butler, housekeeping.</p></div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section data-view="membership" class="view" hidden>
+    <h1 data-i18n="membership.title">Membership</h1>
+    <div class="grid-3">
+      <div class="card">
+        <h3 data-i18n="plan.essential.t">Essential</h3>
+        <p data-i18n="plan.essential.p">CAD 150 / month</p>
+        <ul>
+          <li data-i18n="plan.essential.l1">Business-hours concierge</li>
+          <li data-i18n="plan.essential.l2">Dining & driver</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="plan.elite.t">Elite</h3>
+        <p data-i18n="plan.elite.p">CAD 350 / month</p>
+        <ul>
+          <li data-i18n="plan.elite.l1">Priority handling</li>
+          <li data-i18n="plan.elite.l2">Evenings & weekends</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="plan.bespoke.t">Bespoke</h3>
+        <p data-i18n="plan.bespoke.p">Custom</p>
+        <ul>
+          <li data-i18n="plan.bespoke.l1">Dedicated concierge</li>
+          <li data-i18n="plan.bespoke.l2">Property & events</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST -->
+  <section data-view="request" class="view" hidden>
+    <h1 data-i18n="req.title">Create a Request</h1>
+    <div class="card">
+      <form id="publicRequest">
+        <div class="grid-2">
+          <div><label data-i18n="form.name">Your name</label><input name="name" class="input" required data-i18n="ph.name" data-i18n-attr="placeholder" placeholder="Full name"></div>
+          <div><label data-i18n="form.email">Your email</label><input name="email" type="email" class="input" required data-i18n="ph.email" data-i18n-attr="placeholder" placeholder="Email"></div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label data-i18n="form.category">Category</label>
+            <select name="category" class="input" required>
+              <option data-i18n="cat.dine">Fine Dining</option>
+              <option data-i18n="cat.driver">Private Driver</option>
+              <option data-i18n="cat.well">Wellness</option>
+              <option data-i18n="cat.whistler">Whistler & Ski</option>
+              <option data-i18n="cat.events">Events</option>
+              <option data-i18n="cat.property">Property & Staff</option>
+            </select>
+          </div>
+          <div><label data-i18n="form.guests">Guests (pax)</label><input name="guests" type="number" min="1" value="2" class="input"></div>
+        </div>
+        <div class="grid-2">
+          <div><label data-i18n="form.date">Date</label><input name="date" type="date" class="input"></div>
+          <div><label data-i18n="form.time">Time</label><input name="time" type="time" class="input"></div>
+        </div>
+        <div class="grid-2">
+          <div><label data-i18n="form.budget">Budget (CAD, optional)</label><input name="budget" class="input" data-i18n="ph.budget" data-i18n-attr="placeholder" placeholder="e.g. 300"></div>
+          <div><label>&nbsp;</label><div class="kicker" data-i18n="req.sla">We reply in ~16 min</div></div>
+        </div>
+        <div><label data-i18n="form.notes">Notes</label><textarea name="notes" rows="4" class="input" data-i18n="ph.notes" data-i18n-attr="placeholder" placeholder="Preferences, constraints…"></textarea></div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="btn primary" type="submit" data-i18n="form.send">Submit</button>
+          <div id="pubOk" class="kicker" style="display:none"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section data-view="contact" class="view" hidden>
+    <div class="grid-2">
+      <div>
+        <h1 data-i18n="contact.title">Contact</h1>
+        <div class="card">
+          <p><strong data-i18n="contact.email">Email</strong><br><a href="mailto:concierge@orlen.co" style="color:#fff;text-decoration:none">concierge@orlen.co</a></p>
+          <p><strong data-i18n="contact.whatsapp">WhatsApp</strong><br><a href="#" style="color:#fff;text-decoration:none">+1 (000) 000-0000</a></p>
+          <p><strong data-i18n="contact.area">Area</strong><br><span data-i18n="contact.areaVal">Vancouver & Sea-to-Sky</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="contact.privacyT">Privacy & Discretion</h3>
+        <p data-i18n="contact.privacyD">We operate on a need-to-know basis with partners, minimal data retention, and NDAs on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN / SIGNUP -->
+  <section data-view="login" class="view" hidden>
+    <div class="grid-2">
+      <div>
+        <h1 data-i18n="login.title">Welcome back</h1>
+        <p class="lead" data-i18n="login.lead">Sign in as client, partner, or admin.</p>
+        <div class="card">
+          <form id="loginForm">
+            <label data-i18n="form.email">Email</label><input class="input" name="email" type="email" data-i18n="ph.email" data-i18n-attr="placeholder" placeholder="you@domain.com" required>
+            <label data-i18n="form.password">Password</label><input class="input" name="password" type="password" required>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <button class="btn primary" type="submit" data-i18n="login.btn">Login</button>
+              <a class="btn" href="#/signup" data-i18n="login.create">Create account</a>
+            </div>
+          </form>
+          <p class="kicker" style="margin-top:10px">Demo: client <code>alice@demo.co / orlen123</code> • partner <code>partner@demo.co / orlen123</code> • admin <code>admin@orlen.co / admin123</code></p>
+        </div>
+      </div>
+      <div class="hero-visual"></div>
+    </div>
+  </section>
+
+  <section data-view="signup" class="view" hidden>
+    <h1 data-i18n="signup.title">Create account</h1>
+    <div class="card">
+      <form id="signupForm">
+        <label data-i18n="signup.role">Role</label>
+        <select class="input" name="role" id="roleSel">
+          <option value="client" data-i18n="role.client">Client</option>
+          <option value="partner" data-i18n="role.partner">Partner</option>
+          <option value="admin" data-i18n="role.admin">Admin</option>
+        </select>
+        <div id="companyWrap" style="display:none">
+          <label data-i18n="signup.company">Company (partners)</label><input class="input" name="company" data-i18n="ph.company" data-i18n-attr="placeholder" placeholder="Your brand name">
+        </div>
+        <label data-i18n="form.name">Name</label><input class="input" name="name" required data-i18n="ph.name" data-i18n-attr="placeholder" placeholder="Full name">
+        <label data-i18n="form.email">Email</label><input class="input" name="email" type="email" required data-i18n="ph.email" data-i18n-attr="placeholder" placeholder="you@domain.com">
+        <label data-i18n="form.password">Password</label><input class="input" name="password" type="password" required>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn primary" type="submit" data-i18n="signup.create">Create</button>
+          <a class="btn" href="#/login" data-i18n="signup.cancel">Cancel</a>
+        </div>
+      </form>
+      <p class="kicker" data-i18n="signup.note">This demo stores data in your browser only.</p>
+    </div>
+  </section>
+
+  <!-- CLIENT -->
+  <section data-view="client" class="view" hidden>
+    <h1 data-i18n="client.title">Client portal</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h3 data-i18n="client.new">New request</h3>
+        <form id="newReq">
+          <label data-i18n="form.category">Category</label>
+          <select class="input" name="category">
+            <option data-i18n="cat.dine">Fine Dining</option><option data-i18n="cat.driver">Private Driver</option><option data-i18n="cat.well">Wellness</option>
+            <option data-i18n="cat.whistler">Whistler & Ski</option><option data-i18n="cat.events">Events</option><option data-i18n="cat.property">Property & Staff</option>
+          </select>
+          <div class="grid-2">
+            <div><label data-i18n="form.guests">Guests</label><input class="input" type="number" name="guests" value="2"></div>
+            <div><label data-i18n="form.budget2">Budget (CAD)</label><input class="input" name="budget" data-i18n="ph.budget" data-i18n-attr="placeholder" placeholder="e.g. 300"></div>
+          </div>
+          <div class="grid-2">
+            <div><label data-i18n="form.date">Date</label><input class="input" type="date" name="date"></div>
+            <div><label data-i18n="form.time">Time</label><input class="input" type="time" name="time"></div>
+          </div>
+          <label data-i18n="form.notes">Notes</label><textarea class="input" rows="4" name="notes" data-i18n="ph.notes" data-i18n-attr="placeholder" placeholder="Allergies, preferences, constraints…"></textarea>
+          <div style="margin-top:10px"><button class="btn primary" type="submit" data-i18n="client.create">Create</button></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3 data-i18n="client.mine">My requests</h3>
+        <div id="myReqs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER -->
+  <section data-view="partner" class="view" hidden>
+    <h1 data-i18n="partner.title">Partner portal</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h3 data-i18n="partner.open">Open requests</h3>
+        <div id="openReqs"></div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="partner.assigned">Assigned to me</h3>
+        <div id="myPartnerReqs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section data-view="admin" class="view" hidden>
+    <h1 data-i18n="admin.title">Admin dashboard</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h3 data-i18n="admin.all">All requests</h3>
+        <table><thead><tr><th>ID</th><th data-i18n="admin.client">Client</th><th data-i18n="admin.category">Category</th><th data-i18n="admin.status">Status</th><th data-i18n="admin.assign">Assign partner</th><th data-i18n="admin.set">Set status</th></tr></thead><tbody id="reqTable"></tbody></table>
+      </div>
+      <div class="card">
+        <h3 data-i18n="admin.create">Create user</h3>
+        <form id="adminCreateUser">
+          <label data-i18n="signup.role">Role</label>
+          <select class="input" name="role"><option value="client" data-i18n="role.client">Client</option><option value="partner" data-i18n="role.partner">Partner</option><option value="admin" data-i18n="role.admin">Admin</option></select>
+          <label data-i18n="signup.company">Company (partners)</label><input class="input" name="company" data-i18n="ph.company" data-i18n-attr="placeholder" placeholder="Partner brand">
+          <label data-i18n="form.name">Name</label><input class="input" name="name" required data-i18n="ph.name" data-i18n-attr="placeholder" placeholder="Full name">
+          <label data-i18n="form.email">Email</label><input class="input" name="email" type="email" required data-i18n="ph.email" data-i18n-attr="placeholder" placeholder="you@domain.com">
+          <label data-i18n="form.password">Password</label><input class="input" name="password" type="password" required>
+          <div style="margin-top:10px"><button class="btn primary" type="submit" data-i18n="admin.add">Add user</button></div>
+        </form>
+        <p class="kicker" data-i18n="admin.tip">Tip: Use the client portal to create requests and see the flow.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="container footer"><div>© 2025 Orlen Concierge — Vancouver</div></footer>
+
+<script>
+/* ====== Mini helpers ====== */
+const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+function toast(msg){const d=document.createElement('div');d.textContent=msg;d.style.cssText='position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#12151C;color:#fff;border:1px solid #262B36;padding:10px 14px;border-radius:12px;z-index:9999';document.body.appendChild(d);setTimeout(()=>d.remove(),1800);}
+
+/* ====== Router ====== */
+function show(view){$$('.view').forEach(v=>v.hidden=true);const el=document.querySelector(`[data-view="${view}"]`);if(el) el.hidden=false;$$('[data-nav]').forEach(a=>a.classList.toggle('active', a.getAttribute('href')===location.hash));}
+window.addEventListener('hashchange', ()=>{const v=(location.hash.replace('#/','')||'').split('?')[0]||'';show(v||'home');onEnterView();});
+
+/* ====== Local "DB" (localStorage) ====== */
+const DB={kUsers:'orlen_users',kReqs:'orlen_reqs',kSession:'orlen_sess',
+  load(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}},
+  save(k,v){localStorage.setItem(k, JSON.stringify(v))},
+  session(){try{return JSON.parse(localStorage.getItem(DB.kSession)||'{}')}catch(e){return {}}},
+  setSession(s){localStorage.setItem(DB.kSession, JSON.stringify(s||{}))},
+  uid(){return 'id-'+Math.random().toString(36).slice(2,10)},
+  hid(s){let h=5381;for(let i=0;i<s.length;i++){h=((h<<5)+h)^s.charCodeAt(i)}return (h>>>0).toString(16)}
+};
+
+/* ====== Seed demo ====== */
+(function seed(){
+  const users=DB.load(DB.kUsers); if(users.length) return;
+  const admin={id:DB.uid(), role:'admin', email:'admin@orlen.co', name:'Admin', pass:DB.hid('admin123'), createdAt:new Date().toISOString()};
+  const client={id:DB.uid(), role:'client', email:'alice@demo.co', name:'Alice', pass:DB.hid('orlen123'), createdAt:new Date().toISOString()};
+  const partner={id:DB.uid(), role:'partner', email:'partner@demo.co', name:'Vancouver Chauffeur', company:'Vanco Limo', pass:DB.hid('orlen123'), createdAt:new Date().toISOString()};
+  DB.save(DB.kUsers,[admin,client,partner]);
+  const r={id:'ORL-'+Math.random().toString(36).slice(2,8).toUpperCase(),createdAt:new Date().toISOString(),clientId:client.id,category:'Private Driver',guests:2,date:'',time:'',budget:180,notes:'Tonight 18:30–23:30: dinner → concert → hotel. SUV.',status:'new',updates:[{at:new Date().toISOString(),by:'system',text:'Request created'}],offers:[],assignedPartnerId:null};
+  DB.save(DB.kReqs,[r]);
+})();
+
+/* ====== Auth ====== */
+const Auth={
+  login(email,pass){
+    const u=DB.load(DB.kUsers).find(x=>x.email.toLowerCase()===String(email).toLowerCase()&&x.pass===DB.hid(pass));
+    if(!u) throw new Error(i18n('err.login')||'Invalid credentials');
+    DB.setSession({userId:u.id}); return u;
+  },
+  signup({role,name,email,pass,company}){
+    const lst=DB.load(DB.kUsers);
+    if(lst.some(x=>x.email.toLowerCase()===email.toLowerCase())) throw new Error(i18n('err.email')||'Email already registered');
+    const u={id:DB.uid(),role,name,email,pass:DB.hid(pass),createdAt:new Date().toISOString()}; if(role==='partner') u.company=company||'';
+    lst.push(u); DB.save(DB.kUsers,lst); DB.setSession({userId:u.id}); return u;
+  },
+  me(){const s=DB.session(); if(!s.userId) return null; return DB.load(DB.kUsers).find(u=>u.id===s.userId)||null;},
+  logout(){DB.setSession({}); location.hash='#/login';}
+};
+
+/* ====== Data layer ====== */
+const Data={
+  users(){return DB.load(DB.kUsers)},
+  requests(){return DB.load(DB.kReqs)},
+  saveRequests(v){DB.save(DB.kReqs,v)},
+  userById(id){return Data.users().find(u=>u.id===id)||null},
+  createRequest(payload){
+    const list=Data.requests();
+    const r=Object.assign({id:'ORL-'+Math.random().toString(36).slice(2,8).toUpperCase(),createdAt:new Date().toISOString(),status:'new',updates:[],offers:[],assignedPartnerId:null},payload);
+    r.updates.push({at:new Date().toISOString(),by:'client',text:'Request created'});
+    list.unshift(r); Data.saveRequests(list); return r;
+  },
+  addUpdate(reqId,by,text){
+    const list=Data.requests(); const r=list.find(x=>x.id===reqId); if(!r) return;
+    r.updates.push({at:new Date().toISOString(),by,text}); Data.saveRequests(list); return r;
+  },
+  proposeOffer(reqId,partnerId,amount,note){
+    const list=Data.requests(); const r=list.find(x=>x.id===reqId); if(!r) return;
+    r.offers.push({partnerId,amount:Number(amount||0),note:note||'',at:new Date().toISOString(),accepted:false});
+    r.status=r.status==='new'?'assigned':r.status; r.assignedPartnerId=r.assignedPartnerId||partnerId;
+    Data.saveRequests(list); return r;
+  },
+  acceptOffer(reqId,partnerId,idx){
+    const list=Data.requests(); const r=list.find(x=>x.id===reqId); if(!r) return;
+    r.offers=r.offers.map((o,i)=>({...o,accepted:i===idx})); r.assignedPartnerId=partnerId; r.status='accepted';
+    Data.saveRequests(list); return r;
+  },
+  assignPartner(reqId,partnerId){
+    const list=Data.requests(); const r=list.find(x=>x.id===reqId); if(!r) return;
+    r.assignedPartnerId=partnerId; r.status=r.status==='new'?'assigned':r.status; Data.saveRequests(list); return r;
+  },
+  setStatus(reqId,status){
+    const list=Data.requests(); const r=list.find(x=>x.id===reqId); if(!r) return;
+    r.status=status; Data.saveRequests(list); return r;
+  }
+};
+
+function updateIdentity(){const me=Auth.me(); const el=$('[data-identity]'); if(el) el.textContent=me?(me.name+' • '+me.role.toUpperCase()):i18n('identity.guest')||'Guest';}
+
+/* ====== Public request form ====== */
+(function(){
+  const f=$('#publicRequest'); const ok=$('#pubOk'); if(!f) return;
+  f.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const fd=new FormData(f);
+    const req={name:fd.get('name'),email:fd.get('email'),category:fd.get('category'),guests:Number(fd.get('guests')||2),date:fd.get('date')||'',time:fd.get('time')||'',budget:Number(fd.get('budget')||0)||null,notes:fd.get('notes')||''};
+    const k='orlen_public_requests'; let a=[]; try{a=JSON.parse(localStorage.getItem(k)||'[]')}catch(e){}
+    const rec=Object.assign({id:'PUB-'+Math.random().toString(36).slice(2,8).toUpperCase(),createdAt:new Date().toISOString()},req);
+    a.unshift(rec); localStorage.setItem(k,JSON.stringify(a));
+    ok.textContent=(i18n('toast.sent')||'Request sent!')+' — ID '+rec.id; ok.style.display='block'; f.reset();
+  });
+})();
+
+/* ====== Login & signup ====== */
+(function(){
+  const lf=$('#loginForm');
+  if(lf){
+    lf.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const fd=new FormData(lf);
+      try{
+        const u=Auth.login(fd.get('email'),fd.get('password'));
+        updateIdentity();
+        location.hash=u.role==='admin'?'#/admin':(u.role==='partner'?'#/partner':'#/client');
+      }catch(err){toast(err.message);}
+    });
+  }
+  const roleSel=$('#roleSel'); const cw=$('#companyWrap');
+  if(roleSel&&cw){ roleSel.addEventListener('change',()=>{ cw.style.display=roleSel.value==='partner'?'block':'none'; }); }
+  const sf=$('#signupForm');
+  if(sf){
+    sf.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const fd=new FormData(sf);
+      try{
+        const u=Auth.signup({role:fd.get('role'),name:fd.get('name'),email:fd.get('email'),pass:fd.get('password'),company:fd.get('company')});
+        updateIdentity();
+        location.hash=u.role==='admin'?'#/admin':(u.role==='partner'?'#/partner':'#/client');
+      }catch(err){toast(err.message);}
+    });
+  }
+})();
+
+/* ====== Client portal ====== */
+(function(){
+  const form=$('#newReq'); const list=$('#myReqs'); if(!form||!list) return;
+  function render(){
+    const me=Auth.me(); if(!me) return;
+    const reqs=Data.requests().filter(r=>r.clientId===me.id);
+    list.innerHTML=reqs.map(r=>`<div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>${r.category} • <span class="kicker">${r.id}</span></h3>
+        <span class="status">${r.status.replace('_',' ')}</span>
+      </div>
+      <div class="kicker">${i18n('client.guests')||'Guests'}: ${r.guests||'-'} • ${i18n('client.budget')||'Budget'}: ${r.budget?('CAD '+r.budget):'-'}</div>
+      <p>${r.notes||''}</p>
+      <div class="grid-2">
+        <div>
+          <h4>${i18n('client.updates')||'Updates'}</h4>
+          <div class="card" style="padding:10px">${r.updates.map(u=>`<div class="kicker">[${new Date(u.at).toLocaleString()}] ${u.by}: ${u.text}</div>`).join('')}</div>
+        </div>
+        <div>
+          <h4>${i18n('client.offers')||'Offers'}</h4>
+          <div class="card" style="padding:10px">
+            ${r.offers.length? r.offers.map((o,i)=>{
+              const p=Data.userById(o.partnerId)||{name:'Partner'};
+              return `<div class="kicker">${i18n('client.from')||'From'} <b>${p.company||p.name}</b>: CAD ${o.amount} — ${o.note||''}
+                ${o.accepted?'<span class="badge">'+(i18n('client.accepted')||'accepted')+'</span>':`<button class="btn" data-accept="${r.id}:${o.partnerId}:${i}">${i18n('client.accept')||'Accept'}</button>`}
+              </div>`
+            }).join(''):'<span class="kicker">'+(i18n('client.noOffers')||'No offers yet')+'</span>'}
+          </div>
+        </div>
+      </div>
+      <div class="right"><button class="btn" data-msg="${r.id}">${i18n('client.addNote')||'Add note'}</button></div>
+    </div>`).join('');
+    list.querySelectorAll('[data-accept]').forEach(b=>b.addEventListener('click',()=>{
+      const [rid,pid,idx]=b.getAttribute('data-accept').split(':');
+      Data.acceptOffer(rid,pid,Number(idx)); render();
+    }));
+    list.querySelectorAll('[data-msg]').forEach(b=>b.addEventListener('click',()=>{
+      const rid=b.getAttribute('data-msg'); const t=prompt(i18n('client.promptNote')||'Add a note/message:');
+      if(t){ Data.addUpdate(rid,'client',t); render(); }
+    }));
+    applyI18n(); // re-traduit ce qui vient d'être injecté
+  }
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const fd=new FormData(form); const me=Auth.me();
+    if(!me){ toast(i18n('toast.login')||'Please login'); location.hash='#/login'; return; }
+    Data.createRequest({clientId:me.id,category:fd.get('category'),guests:Number(fd.get('guests')||0),date:fd.get('date')||'',time:fd.get('time')||'',budget:Number(fd.get('budget')||0)||null,notes:fd.get('notes')||''});
+    form.reset(); toast(i18n('toast.created')||'Request created'); render();
+  });
+  window.renderClient=render;
+})();
+
+/* ====== Partner portal ====== */
+(function(){
+  const openWrap=$('#openReqs'); const myWrap=$('#myPartnerReqs'); if(!openWrap||!myWrap) return;
+  function render(){
+    const me=Auth.me(); if(!me) return;
+    const all=Data.requests();
+    const open=all.filter(r=>!r.assignedPartnerId||r.assignedPartnerId===me.id||r.status==='new');
+    const mine=all.filter(r=>r.assignedPartnerId===me.id);
+    function card(r){
+      const c=Data.userById(r.clientId)||{name:'Client'};
+      return `<div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>${r.category} • <span class="kicker">${r.id}</span></h3>
+          <span class="status">${r.status.replace('_',' ')}</span>
+        </div>
+        <div class="kicker">${i18n('partner.client')||'Client'}: ${c.name}</div>
+        <p>${r.notes||''}</p>
+        <div class="right">
+          <button class="btn" data-offer="${r.id}">${i18n('partner.propose')||'Propose offer'}</button>
+          <button class="btn" data-msg="${r.id}">${i18n('partner.addNote')||'Add note'}</button>
+        </div>
+      </div>`;
+    }
+    openWrap.innerHTML=open.map(card).join('')||'<div class="kicker">'+(i18n('partner.noneOpen')||'No open requests right now.')+'</div>';
+    myWrap.innerHTML=mine.map(card).join('')||'<div class="kicker">'+(i18n('partner.noneAssigned')||'No assigned requests yet.')+'</div>';
+    openWrap.querySelectorAll('[data-offer]').forEach(b=>b.addEventListener('click',()=>{
+      const rid=b.getAttribute('data-offer');
+      const amount=prompt(i18n('partner.amount')||'Proposed amount (CAD):'); if(amount===null) return;
+      const note=prompt(i18n('partner.note')||'Short note (optional):')||''; Data.proposeOffer(rid,Auth.me().id,Number(amount),note); render();
+    }));
+    document.querySelectorAll('#openReqs [data-msg], #myPartnerReqs [data-msg]').forEach(b=>b.addEventListener('click',()=>{
+      const rid=b.getAttribute('data-msg'); const t=prompt(i18n('partner.addNotePrompt')||'Add a note to the request:'); if(t){ Data.addUpdate(rid,'partner',t); render(); }
+    }));
+    applyI18n();
+  }
+  window.renderPartner=render;
+})();
+
+/* ====== Admin dashboard ====== */
+(function(){
+  const table=$('#reqTable'); const form=$('#adminCreateUser'); if(!table||!form) return;
+  function render(){
+    const reqs=Data.requests(); const users=Data.users(); const partners=users.filter(u=>u.role==='partner');
+    table.innerHTML=reqs.map(r=>{
+      const c=Data.userById(r.clientId)||{name:'Client'};
+      const partnerOptions=['<option value="">— '+(i18n('admin.assignShort')||'Assign')+' —</option>'].concat(partners.map(u=>`<option value="${u.id}" ${r.assignedPartnerId===u.id?'selected':''}>${u.company||u.name}</option>`)).join('');
+      return `<tr>
+        <td><b>${r.id}</b><div class="kicker">${new Date(r.createdAt).toLocaleString()}</div></td>
+        <td>${c.name}</td><td>${r.category}</td><td><span class="status">${r.status.replace('_',' ')}</span></td>
+        <td><select data-assign="${r.id}" class="input">${partnerOptions}</select></td>
+        <td><select data-status="${r.id}" class="input">${['new','assigned','accepted','in_progress','done','cancelled'].map(s=>`<option ${r.status===s?'selected':''}>${s}</option>`).join('')}</select></td>
+      </tr>`;
+    }).join('');
+    $$('[data-assign]').forEach(s=>s.addEventListener('change',()=>{ Data.assignPartner(s.getAttribute('data-assign'),s.value||null); render(); }));
+    $$('[data-status]').forEach(s=>s.addEventListener('change',()=>{ Data.setStatus(s.getAttribute('data-status'),s.value); render(); }));
+    applyI18n();
+  }
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const fd=new FormData(form);
+    try{ Auth.signup({role:fd.get('role'),name:fd.get('name'),email:fd.get('email'),pass:fd.get('password'),company:fd.get('company')}); form.reset(); toast(i18n('admin.userAdded')||'User added'); render(); }
+    catch(err){ toast(err.message) }
+  });
+  window.renderAdmin=render;
+})();
+
+/* ====== Enter view ====== */
+function onEnterView(){
+  const v=(location.hash.replace('#/','')||'').split('?')[0]||'home';
+  if(v==='client') window.renderClient&&window.renderClient();
+  if(v==='partner') window.renderPartner&&window.renderPartner();
+  if(v==='admin') window.renderAdmin&&window.renderAdmin();
+  updateIdentity();
+  applyI18n(); // re-applique les traductions à chaque navigation
+}
+if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'').split('?')[0]||'home'); onEnterView();
+
+// Optional hero image
+// document.getElementById('heroVisual').style.backgroundImage = "url('vancouver-hero.webp')";
+</script>
+
+<script>
+/* ========= I18N ========= */
+const I18N = {
+  en: {
+    "nav.home":"Home","nav.services":"Services","nav.membership":"Membership","nav.request":"Request","nav.contact":"Contact","nav.login":"Login",
+    "hero.title":"Effortless access to the exceptional.","hero.lead":"Priority dining, private drivers, wellness & clinics, Whistler escapes — handled discreetly and fast.","hero.ctaPrimary":"Create a request","hero.ctaSecondary":"Membership",
+    "badge.discretion":"Discretion-by-design","badge.response":"16 min avg. response","badge.verified":"Verified partners",
+    "home.signature":"Signature Experiences","home.card1.t":"Lions Gate Night Drive","home.card1.d":"Chauffeur across the bridge, private dinner in West Vancouver.","home.card2.t":"Stanley Park Sunrise","home.card2.d":"Seawall cycling + curated breakfast overlooking the harbour.","home.card3.t":"Coal Harbour Yacht Hour","home.card3.d":"Sunset aperitivo aboard with sommelier-selected wines.",
+    "services.title":"Services","svc.dine.t":"Fine Dining","svc.dine.d":"Priority reservations, tasting menus, private rooms.","svc.driver.t":"Private Driver","svc.driver.d":"YVR transfers, hourly chauffeur, SUVs & sedans.","svc.well.t":"Wellness","svc.well.d":"Spas & clinics, in-suite treatments, confidentiality.","svc.whistler.t":"Whistler & Ski","svc.whistler.d":"Transport, passes, rentals, guides.","svc.events.t":"Events","svc.events.d":"Tickets & boxes, curated evenings.","svc.property.t":"Property & Staff","svc.property.d":"Private chef, butler, housekeeping.",
+    "membership.title":"Membership","plan.essential.t":"Essential","plan.essential.p":"CAD 150 / month","plan.essential.l1":"Business-hours concierge","plan.essential.l2":"Dining & driver","plan.elite.t":"Elite","plan.elite.p":"CAD 350 / month","plan.elite.l1":"Priority handling","plan.elite.l2":"Evenings & weekends","plan.bespoke.t":"Bespoke","plan.bespoke.p":"Custom","plan.bespoke.l1":"Dedicated concierge","plan.bespoke.l2":"Property & events",
+    "req.title":"Create a Request","req.sla":"We reply in ~16 min",
+    "form.name":"Your name","form.email":"Your email","form.category":"Category","form.guests":"Guests (pax)","form.date":"Date","form.time":"Time","form.budget":"Budget (CAD, optional)","form.notes":"Notes","form.send":"Submit","form.password":"Password","form.budget2":"Budget (CAD)",
+    "ph.name":"Full name","ph.email":"Email","ph.budget":"e.g. 300","ph.notes":"Preferences, constraints…","ph.company":"Your brand name",
+    "contact.title":"Contact","contact.email":"Email","contact.whatsapp":"WhatsApp","contact.area":"Area","contact.areaVal":"Vancouver & Sea-to-Sky","contact.privacyT":"Privacy & Discretion","contact.privacyD":"We operate on a need-to-know basis with partners, minimal data retention, and NDAs on request.",
+    "login.title":"Welcome back","login.lead":"Sign in as client, partner, or admin.","login.btn":"Login","login.create":"Create account",
+    "signup.title":"Create account","signup.role":"Role","signup.company":"Company (partners)","signup.create":"Create","signup.cancel":"Cancel","signup.note":"This demo stores data in your browser only.",
+    "role.client":"Client","role.partner":"Partner","role.admin":"Admin",
+    "client.title":"Client portal","client.new":"New request","client.mine":"My requests","client.guests":"Guests","client.budget":"Budget","client.updates":"Updates","client.offers":"Offers","client.from":"From","client.accepted":"accepted","client.accept":"Accept","client.noOffers":"No offers yet","client.addNote":"Add note","client.promptNote":"Add a note/message:","client.create":"Create",
+    "partner.title":"Partner portal","partner.open":"Open requests","partner.assigned":"Assigned to me","partner.client":"Client","partner.propose":"Propose offer","partner.addNote":"Add note","partner.noneOpen":"No open requests right now.","partner.noneAssigned":"No assigned requests yet.","partner.amount":"Proposed amount (CAD):","partner.note":"Short note (optional):","partner.addNotePrompt":"Add a note to the request:",
+    "admin.title":"Admin dashboard","admin.all":"All requests","admin.client":"Client","admin.category":"Category","admin.status":"Status","admin.assign":"Assign partner","admin.set":"Set status","admin.assignShort":"Assign","admin.create":"Create user","admin.add":"Add user","admin.tip":"Tip: Use the client portal to create requests and see the flow.","admin.userAdded":"User added",
+    "identity.guest":"Guest",
+    "toast.sent":"Request sent!","toast.created":"Request created","toast.login":"Please login",
+    "err.login":"Invalid credentials","err.email":"Email already registered"
+  },
+  fr: {
+    "nav.home":"Accueil","nav.services":"Services","nav.membership":"Abonnement","nav.request":"Demande","nav.contact":"Contact","nav.login":"Connexion",
+    "hero.title":"Accès sans effort à l’exceptionnel.","hero.lead":"Restaurants prioritaires, chauffeurs privés, bien-être & cliniques, escapades à Whistler — avec discrétion et rapidité.","hero.ctaPrimary":"Créer une demande","hero.ctaSecondary":"Abonnement",
+    "badge.discretion":"Discrétion par design","badge.response":"Réponse moyenne 16 min","badge.verified":"Partenaires vérifiés",
+    "home.signature":"Expériences Signature","home.card1.t":"Lions Gate by Night","home.card1.d":"Trajet avec chauffeur sur le pont, dîner privé à West Vancouver.","home.card2.t":"Aube à Stanley Park","home.card2.d":"Vélo sur la digue + petit-déjeuner sélectionné face au port.","home.card3.t":"Yacht à Coal Harbour","home.card3.d":"Aperitivo au coucher du soleil avec vins choisis par sommelier.",
+    "services.title":"Services","svc.dine.t":"Gastronomie","svc.dine.d":"Réservations prioritaires, menus dégustation, salons privés.","svc.driver.t":"Chauffeur privé","svc.driver.d":"Transferts YVR, chauffeur à l’heure, SUV & berlines.","svc.well.t":"Bien-être","svc.well.d":"Spas & cliniques, soins en suite, confidentialité.","svc.whistler.t":"Whistler & Ski","svc.whistler.d":"Transport, forfaits, locations, guides.","svc.events.t":"Événements","svc.events.d":"Billetterie & loges, soirées sur-mesure.","svc.property.t":"Propriété & Personnel","svc.property.d":"Chef privé, majordome, housekeeping.",
+    "membership.title":"Abonnement","plan.essential.t":"Essential","plan.essential.p":"150 CAD / mois","plan.essential.l1":"Conciergerie heures ouvrées","plan.essential.l2":"Gastronomie & chauffeur","plan.elite.t":"Elite","plan.elite.p":"350 CAD / mois","plan.elite.l1":"Traitement prioritaire","plan.elite.l2":"Soirs & week-ends","plan.bespoke.t":"Bespoke","plan.bespoke.p":"Sur mesure","plan.bespoke.l1":"Concierge dédié","plan.bespoke.l2":"Propriété & événements",
+    "req.title":"Créer une demande","req.sla":"Réponse sous ~16 min",
+    "form.name":"Votre nom","form.email":"Votre e-mail","form.category":"Catégorie","form.guests":"Invités (pax)","form.date":"Date","form.time":"Heure","form.budget":"Budget (CAD, optionnel)","form.notes":"Notes","form.send":"Envoyer","form.password":"Mot de passe","form.budget2":"Budget (CAD)",
+    "ph.name":"Nom complet","ph.email":"E-mail","ph.budget":"ex. 300","ph.notes":"Préférences, contraintes…","ph.company":"Nom de la marque",
+    "cat.dine":"Gastronomie","cat.driver":"Chauffeur privé","cat.well":"Bien-être","cat.whistler":"Whistler & Ski","cat.events":"Événements","cat.property":"Propriété & Personnel",
+    "contact.title":"Contact","contact.email":"E-mail","contact.whatsapp":"WhatsApp","contact.area":"Zone","contact.areaVal":"Vancouver & Sea-to-Sky","contact.privacyT":"Confidentialité & Discrétion","contact.privacyD":"Partage strictement au besoin avec les partenaires, rétention minimale des données, NDA sur demande.",
+    "login.title":"Bon retour","login.lead":"Connectez-vous en tant que client, partenaire ou admin.","login.btn":"Se connecter","login.create":"Créer un compte",
+    "signup.title":"Créer un compte","signup.role":"Rôle","signup.company":"Entreprise (partenaires)","signup.create":"Créer","signup.cancel":"Annuler","signup.note":"Cette démo stocke les données uniquement dans votre navigateur.",
+    "role.client":"Client","role.partner":"Partenaire","role.admin":"Admin",
+    "client.title":"Espace client","client.new":"Nouvelle demande","client.mine":"Mes demandes","client.guests":"Invités","client.budget":"Budget","client.updates":"Mises à jour","client.offers":"Offres","client.from":"De","client.accepted":"acceptée","client.accept":"Accepter","client.noOffers":"Aucune offre pour le moment","client.addNote":"Ajouter une note","client.promptNote":"Ajouter une note/message :","client.create":"Créer",
+    "partner.title":"Espace partenaire","partner.open":"Demandes ouvertes","partner.assigned":"Attribuées","partner.client":"Client","partner.propose":"Proposer une offre","partner.addNote":"Ajouter une note","partner.noneOpen":"Aucune demande ouverte.","partner.noneAssigned":"Aucune demande attribuée.","partner.amount":"Montant proposé (CAD) :","partner.note":"Courte note (optionnelle) :","partner.addNotePrompt":"Ajouter une note à la demande :",
+    "admin.title":"Tableau de bord","admin.all":"Toutes les demandes","admin.client":"Client","admin.category":"Catégorie","admin.status":"Statut","admin.assign":"Assigner un partenaire","admin.set":"Changer le statut","admin.assignShort":"Assigner","admin.create":"Créer un utilisateur","admin.add":"Ajouter","admin.tip":"Astuce : utilisez l’espace client pour créer des demandes et voir le flux.","admin.userAdded":"Utilisateur ajouté",
+    "identity.guest":"Invité",
+    "toast.sent":"Demande envoyée !","toast.created":"Demande créée","toast.login":"Veuillez vous connecter",
+    "err.login":"Identifiants invalides","err.email":"E-mail déjà enregistré"
+  }
+};
+const LANG_KEY="orlen_lang";
+let lang = localStorage.getItem(LANG_KEY) || "en";
+
+/* Récup rapide d'une traduction */
+function i18n(key){ return I18N?.[lang]?.[key]; }
+
+/* Applique les traductions :
+   - data-i18n => textContent
+   - data-i18n-attr="placeholder|aria-label|value|title" => affecte l'attribut
+*/
+function applyI18n(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k = el.getAttribute("data-i18n");
+    const attr = el.getAttribute("data-i18n-attr");
+    const t = i18n(k);
+    if(!t) return;
+    if(attr){
+      el.setAttribute(attr, t);
+    }else{
+      // Si OPTION, on traduit son label mais on laisse sa value
+      if(el.tagName === 'OPTION') el.textContent = t;
+      else el.textContent = t;
+    }
+  });
+  const btn = document.getElementById("langToggle");
+  if (btn) {
+    btn.textContent = lang.toUpperCase();
+    btn.setAttribute("aria-label", lang === "en" ? "Passer en français" : "Switch to English");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("langToggle")?.addEventListener("click", ()=>{
+    lang = (lang === "en") ? "fr" : "en";
+    localStorage.setItem(LANG_KEY, lang);
+    applyI18n();
+  });
+  applyI18n();
+});
+</script>
+
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orlen — Concierge Vancouver (One-file)</title>
+  <meta name="description" content="Orlen — Luxury concierge in Vancouver. Dining, private drivers, wellness, Whistler, events.">
+  <style>
+    :root{--bg:#0B0B0D;--panel:#111115;--border:#232328;--text:#F6F3EA;--muted:#B9B4A6;--gold1:#D4AF37;--gold2:#B8891A;--radius:18px;--shadow:0 22px 60px rgba(0,0,0,.55)}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,'Helvetica Neue';color:var(--text);background:radial-gradient(900px 600px at 110% -10%, rgba(212,175,55,.09), transparent 55%),radial-gradient(700px 500px at -10% 110%, rgba(184,137,26,.08), transparent 55%),var(--bg);-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:'Bodoni Moda',Georgia,serif;line-height:1.1}h1{font-size:clamp(28px,4.6vw,52px)}h2{font-size:clamp(22px,3vw,32px)}h3{font-size:20px;margin:8px 0}.kicker{text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:800;font-size:12px}
+    .container{width:min(1180px,92vw);margin:0 auto}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:980px){.grid-2{grid-template-columns:1fr}}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media (max-width:980px){.grid-3{grid-template-columns:1fr 1fr}}@media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+    .header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(8,8,12,.65);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;gap:14px;padding:12px 0}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.brand small{color:#9EA2AF;font-weight:700;font-size:12px}
+    .nav a{color:#C9CEDA;text-decoration:none;padding:8px 12px;border-radius:12px}.nav a:hover,.nav a.active{background:#161821;color:#fff;border:1px solid #262B36}.spacer{flex:1}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;text-decoration:none;border-radius:12px;padding:10px 14px;background:#12151C;color:#EDEFF6;border:1px solid #262B36;cursor:pointer}.btn:hover{filter:brightness(1.05)}.btn.primary{background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#1A160A;border-color:rgba(0,0,0,.2)}
+    .card{background:linear-gradient(180deg,rgba(212,175,55,.06),transparent 40%),var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}.card p{color:#B9BECA}
+    .hero{padding:44px 0 16px;border-bottom:1px solid var(--border)}.hero-visual{min-height:260px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(212,175,55,.10),transparent);border:1px solid var(--border)}
+    .footer{border-top:1px solid var(--border);padding:18px 0;color:#9BA1AE;font-size:14px;margin-top:24px}
+    form label{display:block;margin:6px 0 6px 2px;color:#B9B4A6;font-size:12px}.input, textarea, select{width:100%;background:#0F0F13;border:1px solid var(--border);border-radius:12px;color:#F6F3EA;padding:11px 12px;outline:none}
+    .input:focus, textarea:focus, select:focus{border-color:#6E5F2A;box-shadow:0 0 0 3px rgba(212,175,55,.15)}.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;background:linear-gradient(135deg,var(--gold1),var(--gold2));color:#1A160A}
+    .status{padding:4px 10px;border-radius:999px;border:1px solid #2a2e38;background:#0f1014;color:#D6D9E6;font-size:12px}
+    .right{display:flex;gap:8px;justify-content:flex-end}
+    .lead{color:#C9CEDA}
+    table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid var(--border);padding:8px;text-align:left}
+    code{background:#1a1c23;border:1px solid #2b3040;border-radius:6px;padding:2px 6px}
     /* === PATCH UX/ACCESSibilité === */
 :root { --focus-ring: #DFA437; }
 html { scroll-behavior: smooth; }
