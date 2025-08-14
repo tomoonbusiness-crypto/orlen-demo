@@ -731,7 +731,23 @@ if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'')
 // Sécurité: si plusieurs #langToggle existent (copier-coller en double), on garde le premier
 (function(){ document.addEventListener('DOMContentLoaded', ()=>{ const d=[...document.querySelectorAll('#langToggle')]; d.slice(1).forEach(n=>n.remove()); }); })();
 
-// Optional hero image
+<script>
+// === HERO IMAGE (aléatoire parmi 3 photos) ===
+(function(){
+  const el = document.getElementById('heroVisual');
+  if(!el) return;
+  const HEROES = [
+    'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&auto=format&fit=crop&w=1600',
+    'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&auto=format&fit=crop&w=1600',
+    'https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?q=80&auto=format&fit=crop&w=1600'
+  ];
+  const url = HEROES[Math.floor(Math.random()*HEROES.length)];
+  el.style.backgroundImage = `url('${url}')`;
+  el.style.backgroundSize = 'cover';
+  el.style.backgroundPosition = 'center';
+})();
+</script>
+
 // document.getElementById('heroVisual').style.backgroundImage = "url('vancouver-hero.webp')";
 </script>
 
