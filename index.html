@@ -244,7 +244,12 @@ a:not(.btn){ text-underline-offset:3px; }
   <span class="chip" data-i18n="badge.verified">Verified partners</span>
 </div>
         </div>
-        <div class="hero-visual" id="heroVisual"></div>
+        <div
+  class="hero-visual"
+  id="heroVisual"
+  style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/f/fe/Lions_Gate_Bridge_at_night_reflections_Vancouver%2C_BC_Canada.jpg');background-size:cover;background-position:center 48%;">
+</div>
+
       </div>
     </section>
     <section class="section">
@@ -508,6 +513,8 @@ const DB={kUsers:'orlen_users',kReqs:'orlen_reqs',kSession:'orlen_sess',
   const r={id:'ORL-'+Math.random().toString(36).slice(2,8).toUpperCase(),createdAt:new Date().toISOString(),clientId:client.id,category:'Private Driver',guests:2,date:'',time:'',budget:180,notes:'Tonight 18:30–23:30: dinner → concert → hotel. SUV.',status:'new',updates:[{at:new Date().toISOString(),by:'system',text:'Request created'}],offers:[],assignedPartnerId:null};
   DB.save(DB.kReqs,[r]);
 
+})();
+
 
 /* ====== Auth ====== */
 const Auth={
@@ -754,49 +761,12 @@ function onEnterView(){
   updateIdentity(); updateAuthUI(); applyI18n();
 }
 if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'').split('?')[0]||'home'); onEnterView();
-
- 
-
-// Sécurité: si plusieurs #langToggle existent (copier-coller en double), on garde le premier
-
-   // HERO image (Lions Gate Bridge)
-(function(){
-  const el = document.getElementById('heroVisual');
-  if(!el) return;
-  el.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/f/fe/Lions_Gate_Bridge_at_night_reflections_Vancouver%2C_BC_Canada.jpg')";
-  el.style.backgroundSize = 'cover';
-  el.style.backgroundPosition = 'center 48%';
-})();
-</script>
-
-
-  })();
 </script>
 
 <script>
 /* ========= I18N ========= */
 
 
-// === HERO IMAGE (aléatoire parmi 3 photos) ===
-// (IMPORTANT: pas de <script> ici — on reste dans le même bloc <script>)
-(function(){
-  const el = document.getElementById('heroVisual');
-  if(!el) return;
-  const HEROES = [
-    'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&auto=format&fit=crop&w=1600',
-    'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&auto=format&fit=crop&w=1600',
-    'https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?q=80&auto=format&fit=crop&w=1600'
-  ];
-  const url = HEROES[Math.floor(Math.random()*HEROES.length)];
-  el.style.backgroundImage = `url('${url}')`;
-  el.style.backgroundSize = 'cover';
-  el.style.backgroundPosition = 'center';
-})();
-
-// document.getElementById('heroVisual').style.backgroundImage = "url('vancouver-hero.webp')";
-</script>
-
-</script>
 
 <script>
 /* ========= I18N ========= */
