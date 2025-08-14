@@ -507,7 +507,7 @@ const DB={kUsers:'orlen_users',kReqs:'orlen_reqs',kSession:'orlen_sess',
   DB.save(DB.kUsers,[admin,client,partner]);
   const r={id:'ORL-'+Math.random().toString(36).slice(2,8).toUpperCase(),createdAt:new Date().toISOString(),clientId:client.id,category:'Private Driver',guests:2,date:'',time:'',budget:180,notes:'Tonight 18:30–23:30: dinner → concert → hotel. SUV.',status:'new',updates:[{at:new Date().toISOString(),by:'system',text:'Request created'}],offers:[],assignedPartnerId:null};
   DB.save(DB.kReqs,[r]);
-})();
+
 
 /* ====== Auth ====== */
 const Auth={
@@ -758,8 +758,15 @@ if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'')
 // Sécurité: si plusieurs #langToggle existent (copier-coller en double), on garde le premier
 (function(){ document.addEventListener('DOMContentLoaded', ()=>{ const d=[...document.querySelectorAll('#langToggle')]; d.slice(1).forEach(n=>n.remove()); }); })();
 
+  })();
+</script>
+
 <script>
+/* ========= I18N ========= */
+
+
 // === HERO IMAGE (aléatoire parmi 3 photos) ===
+// (IMPORTANT: pas de <script> ici — on reste dans le même bloc <script>)
 (function(){
   const el = document.getElementById('heroVisual');
   if(!el) return;
@@ -773,9 +780,10 @@ if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'')
   el.style.backgroundSize = 'cover';
   el.style.backgroundPosition = 'center';
 })();
-</script>
 
 // document.getElementById('heroVisual').style.backgroundImage = "url('vancouver-hero.webp')";
+</script>
+
 </script>
 
 <script>
