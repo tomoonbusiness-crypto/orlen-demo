@@ -5,6 +5,11 @@
   <title>Orlen — Concierge Vancouver (One-file)</title>
   <meta name="description" content="Orlen — Luxury concierge in Vancouver. Dining, private drivers, wellness, Whistler, events.">
   <style>
+     /* Hide duplicated headers/footers if file was pasted twice */
+.header ~ .header,
+footer.footer ~ footer.footer,
+.container.footer ~ .container.footer { display:none !important; }
+
     :root{--bg:#0B0B0D;--panel:#111115;--border:#232328;--text:#F6F3EA;--muted:#B9B4A6;--gold1:#D4AF37;--gold2:#B8891A;--radius:18px;--shadow:0 22px 60px rgba(0,0,0,.55)}
     *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,'Helvetica Neue';color:var(--text);background:radial-gradient(900px 600px at 110% -10%, rgba(212,175,55,.09), transparent 55%),radial-gradient(700px 500px at -10% 110%, rgba(184,137,26,.08), transparent 55%),var(--bg);-webkit-font-smoothing:antialiased}
     h1,h2,h3{font-family:'Bodoni Moda',Georgia,serif;line-height:1.1}h1{font-size:clamp(28px,4.6vw,52px)}h2{font-size:clamp(22px,3vw,32px)}h3{font-size:20px;margin:8px 0}.kicker{text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:800;font-size:12px}
@@ -2010,6 +2015,14 @@ if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'')
     get: (k) => JSON.parse(localStorage.getItem(k) || "null"),
     set: (k,v) => localStorage.setItem(k, JSON.stringify(v))
   };
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', ()=> {
+  [...document.querySelectorAll('header.header')].slice(1).forEach(n=>n.remove());
+  [...document.querySelectorAll('footer.footer, .container.footer')].slice(1).forEach(n=>n.remove());
+  // sécurité: si #app a été dupliqué par mégarde
+  [...document.querySelectorAll('#app')].slice(1).forEach(n=>n.remove());
+});
 </script>
 
 </body>
