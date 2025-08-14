@@ -155,6 +155,15 @@ a:not(.btn){ text-underline-offset:3px; }
 /* Grids : souffle supplémentaire sur mobile */
 @media (max-width:980px){
   .section{ padding-block: var(--space-5) var(--space-4); }
+
+}
+.hero-visual{min-height:360px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.hero-visual::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(60% 60% at 70% 0%, rgba(0,0,0,.28), transparent),
+    linear-gradient(to top, rgba(11,11,13,.52), transparent 55%),
+    linear-gradient(135deg, rgba(212,175,55,.12), transparent 40%);
 }
 
 
