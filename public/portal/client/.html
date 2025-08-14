@@ -47,6 +47,53 @@
     .skip-link:focus{left:16px;top:12px;width:auto;height:auto;background:#12151C;color:#fff;border:1px solid #262B36;padding:8px 12px;border-radius:10px;z-index:10000}
     /* Si jamais un collage en double arrive, on masque les répétitions grossières */
     .header ~ .header, footer.footer ~ footer.footer, .container.footer ~ .container.footer { display:none!important; }
+    /* --- HOME: look plus élégant & chaleureux --- */
+
+/* CTA premium réservé au hero */
+.btn.cta-primary{
+  background:linear-gradient(135deg,var(--gold1),var(--gold2));
+  color:#1A160A;border-color:rgba(0,0,0,.25);
+  box-shadow:0 10px 30px rgba(212,175,55,.18), inset 0 1px 0 rgba(255,255,255,.2);
+  position:relative;
+}
+.btn.cta-primary::after{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(120deg,rgba(255,255,255,.25),transparent 60%);
+  opacity:0; transition:opacity .2s ease;
+}
+.btn.cta-primary:hover::after{ opacity:.35 }
+
+/* Bouton secondaire discret */
+.btn.ghost{ background:transparent; border-color:#2a2e38; color:#EDEFF6 }
+.btn.ghost:hover{ background:#161821 }
+
+/* Chips neutres (remplacent les badges dorés dans le hero) */
+.chips{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid #2a2e38; background:#121217; color:#D6D9E6;
+  font-weight:800; font-size:12px;
+}
+.chip::before{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:linear-gradient(135deg,var(--gold1),var(--gold2)); opacity:.55;
+}
+
+/* Hero ambiance plus chaude + micro-typographie */
+.hero{ position:relative; overflow:hidden; padding:56px 0 22px }
+.hero::before{
+  content:""; position:absolute; inset:-25% -15% auto -15%; height:420px;
+  background:radial-gradient(620px 320px at 70% -10%, rgba(212,175,55,.12), transparent 60%);
+  filter:blur(8px); pointer-events:none;
+}
+.hero h1{ letter-spacing:.2px }
+.lead{ color:#CBD1DE }
+
+/* Cards plus aérées & hover subtil */
+.card{ transition:transform .25s ease, box-shadow .25s ease }
+.card:hover{ transform:translateY(-2px); box-shadow:0 28px 68px rgba(0,0,0,.6) }
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -806,25 +853,32 @@ footer.footer ~ footer.footer,
 <main class="container" id="app">
   <!-- HOME -->
   <section data-view="home" class="view">
-    <section class="hero">
-      <div class="grid-2">
-        <div>
-          <div class="kicker">Sea-to-Sky</div>
-          <h1 data-i18n="hero.title">Effortless access to the exceptional.</h1>
-          <p class="lead" data-i18n="hero.lead">Priority dining, private drivers, wellness & clinics, Whistler escapes — handled discreetly and fast.</p>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#/request" data-i18n="hero.ctaPrimary">Create a request</a>
-            <a class="btn" href="#/membership" data-i18n="hero.ctaSecondary">Membership</a>
-          </div>
-          <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
-            <span class="badge" data-i18n="badge.discretion">Discretion-by-design</span>
-            <span class="badge" data-i18n="badge.response">16 min avg. response</span>
-            <span class="badge" data-i18n="badge.verified">Verified partners</span>
-          </div>
-        </div>
-        <div class="hero-visual" id="heroVisual"></div>
+   <section class="hero">
+  <div class="grid-2">
+    <div>
+      <div class="kicker">Sea-to-Sky</div>
+      <h1 data-i18n="hero.title">Effortless access to the exceptional.</h1>
+      <p class="lead" data-i18n="hero.lead">Priority dining, private drivers, wellness & clinics, Whistler escapes — handled discreetly and fast.</p>
+
+      <!-- CTA: un seul bouton doré -->
+      <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap">
+        <a class="btn cta-primary" href="#/request" data-i18n="hero.ctaPrimary">Create a request</a>
+        <a class="btn ghost" href="#/membership" data-i18n="hero.ctaSecondary">Membership</a>
+        <span class="kicker" style="opacity:.8" data-i18n="req.sla">We reply in ~16 min</span>
       </div>
-    </section>
+
+      <!-- Chips neutres (remplacent les badges dorés) -->
+      <div class="chips">
+        <span class="chip" data-i18n="badge.discretion">Discretion-by-design</span>
+        <span class="chip" data-i18n="badge.response">16 min avg. response</span>
+        <span class="chip" data-i18n="badge.verified">Verified partners</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual" aria-hidden="true"></div>
+  </div>
+</section>
+
     <section class="section">
       <h2 data-i18n="home.signature">Signature Experiences</h2>
       <div class="grid-3">
