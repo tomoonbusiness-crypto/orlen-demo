@@ -755,6 +755,15 @@ function onEnterView(){
 }
 if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'').split('?')[0]||'home'); onEnterView();
 
+  // HERO image (Lions Gate Bridge)
+(function(){
+  const el = document.getElementById('heroVisual');
+  if(!el) return;
+  el.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/f/fe/Lions_Gate_Bridge_at_night_reflections_Vancouver%2C_BC_Canada.jpg')";
+  el.style.backgroundSize = 'cover';
+  el.style.backgroundPosition = 'center 48%';
+})();
+
 // Sécurité: si plusieurs #langToggle existent (copier-coller en double), on garde le premier
 (function(){ document.addEventListener('DOMContentLoaded', ()=>{ const d=[...document.querySelectorAll('#langToggle')]; d.slice(1).forEach(n=>n.remove()); }); })();
 <script>
