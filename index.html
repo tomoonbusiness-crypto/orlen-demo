@@ -752,22 +752,21 @@ function updateAuthUI(){
   window.renderAdmin=render;
 })();
 
+<script>
 /* ====== Enter view ====== */
 function onEnterView(){
   const v=(location.hash.replace('#/','')||'').split('?')[0]||'home';
   if(v==='client') window.renderClient&&window.renderClient();
   if(v==='partner') window.renderPartner&&window.renderPartner();
   if(v==='admin') window.renderAdmin&&window.renderAdmin();
-  updateIdentity(); updateAuthUI(); applyI18n();
+  updateIdentity(); 
+  updateAuthUI(); 
+  if (typeof applyI18n === 'function') applyI18n();
 }
-if(!location.hash) location.hash='#/'; show((location.hash.replace('#/','')||'').split('?')[0]||'home'); onEnterView();
+if(!location.hash) location.hash='#/'; 
+show((location.hash.replace('#/','')||'').split('?')[0]||'home'); 
+onEnterView();
 </script>
-
-<script>
-/* ========= I18N ========= */
-
-
-
 <script>
 /* ========= I18N ========= */
 const I18N = {
@@ -791,7 +790,10 @@ const I18N = {
     "admin.title":"Admin dashboard","admin.all":"All requests","admin.client":"Client","admin.category":"Category","admin.status":"Status","admin.assign":"Assign partner","admin.set":"Set status","admin.assignShort":"Assign","admin.create":"Create user","admin.add":"Add user","admin.tip":"Tip: Use the client portal to create requests and see the flow.","admin.userAdded":"User added",
     "identity.guest":"Guest",
     "toast.sent":"Request sent!","toast.created":"Request created","toast.login":"Please login",
-    "err.login":"Invalid credentials","err.email":"Email already registered"
+    "err.login":"Invalid credentials","err.email":"Email already registered",
+
+    /* manquants pour les <option> du formulaire */
+    "cat.dine":"Fine Dining","cat.driver":"Private Driver","cat.well":"Wellness","cat.whistler":"Whistler & Ski","cat.events":"Events","cat.property":"Property & Staff"
   },
   fr: {
     "nav.home":"Accueil","nav.services":"Services","nav.membership":"Abonnement","nav.request":"Demande","nav.contact":"Contact","nav.login":"Connexion",
@@ -821,7 +823,7 @@ const LANG_KEY="orlen_lang";
 let lang = localStorage.getItem(LANG_KEY) || "en";
 
 /* Raccourci trad */
-function i18n(key){ return I18N?.[lang]?.[key]; }
+function i18n(key){ try{ return I18N[lang][key]; }catch(e){ return null; } }
 
 /* Applique les traductions */
 function applyI18n(){
@@ -830,7 +832,8 @@ function applyI18n(){
     const k = el.getAttribute("data-i18n");
     const attr = el.getAttribute("data-i18n-attr");
     const t = i18n(k); if(!t) return;
-    if(attr){ el.setAttribute(attr, t); } else { if(el.tagName==='OPTION') el.textContent=t; else el.textContent=t; }
+    if(attr){ el.setAttribute(attr, t); }
+    else { if(el.tagName==='OPTION') el.textContent=t; else el.textContent=t; }
   });
   const btn = document.getElementById("langToggle");
   if (btn) {
