@@ -93,6 +93,70 @@
 /* Cards plus aérées & hover subtil */
 .card{ transition:transform .25s ease, box-shadow .25s ease }
 .card:hover{ transform:translateY(-2px); box-shadow:0 28px 68px rgba(0,0,0,.6) }
+    /* === ELEGANT UPGRADE =============================== */
+:root{
+  --container: min(1120px, 92vw);
+  --space-1: 6px; --space-2: 10px; --space-3: 16px; --space-4: 24px; --space-5: 36px; --space-6: 56px;
+  --radius: 20px; --radius-lg: 28px;
+  --elev-1: 0 8px 26px rgba(0,0,0,.38);
+  --elev-2: 0 22px 60px rgba(0,0,0,.55);
+  --text-muted: #C9CEDA;
+}
+
+.container{ width:var(--container); }
+p{ max-width:68ch; }
+
+/* Sections : rythme régulier */
+.section{ padding-block: var(--space-6) var(--space-5); border-top:1px solid var(--border); }
+.section > h1,.section > h2{ margin:0 0 var(--space-3); }
+
+/* Header : verre dépoli + ombre en scroll */
+.header{ backdrop-filter: blur(10px); background: rgba(8,8,12,.55); transition: box-shadow .2s ease, background .2s ease; }
+.header.scrolled{ background: rgba(8,8,12,.75); box-shadow: 0 8px 26px rgba(0,0,0,.35); }
+
+/* Nav : active plus nette */
+.nav a{ border:1px solid transparent; }
+.nav a.active{ background:#161821; border-color:#262B36; color:#fff; }
+
+/* Héros : titre doux + visuel soyeux */
+.hero{ position:relative; padding:56px 0 24px; }
+.hero::before{
+  content:""; position:absolute; inset:-25% -15% auto -15%; height:420px;
+  background:radial-gradient(640px 340px at 70% -10%, rgba(212,175,55,.12), transparent 60%);
+  filter:blur(10px); pointer-events:none;
+}
+.hero h1{
+  background:linear-gradient(180deg,#fff,#EAE4D5);
+  -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.2px;
+}
+.lead{ color:var(--text-muted); }
+
+/* Boutons : tailles & arrondis harmonisés */
+.btn{ padding:12px 16px; border-radius:14px; }
+.btn.primary{ box-shadow: inset 0 1px 0 rgba(255,255,255,.2); }
+.btn.ghost{ background:transparent; border-color:#2a2e38; color:#EDEFF6; }
+.btn.ghost:hover{ background:#161821; }
+
+/* Cartes : ombres et survol subtils */
+.card{
+  border-radius:var(--radius);
+  box-shadow: var(--elev-1);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .2s ease;
+}
+.card:hover{ transform: translateY(-2px); box-shadow: var(--elev-2); }
+
+/* Inputs : placeholders doux + focus propre */
+.input, textarea, select{ border-radius:14px; transition: box-shadow .2s ease, border-color .2s ease; }
+.input::placeholder, textarea::placeholder{ color:#8E93A5; }
+
+/* Liens texte (hors .btn) */
+a:not(.btn){ text-underline-offset:3px; }
+
+/* Grids : souffle supplémentaire sur mobile */
+@media (max-width:980px){
+  .section{ padding-block: var(--space-5) var(--space-4); }
+}
+
 
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
