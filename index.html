@@ -190,6 +190,14 @@ a:not(.btn){ text-underline-offset:3px; }
     <div class="kicker" data-identity></div>
   </div>
 </header>
+<script>
+  // Ombre du header au scroll
+  (function(){
+    const h=document.querySelector('.header');
+    const onScroll=()=>h&&h.classList.toggle('scrolled', window.scrollY>6);
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+</script>
 
 <main class="container" id="app">
   <!-- HOME -->
