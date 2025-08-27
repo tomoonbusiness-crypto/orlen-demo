@@ -259,8 +259,78 @@ a:not(.btn){ text-underline-offset:3px; }
         <div class="card"><h3 data-i18n="home.card2.t">Stanley Park Sunrise</h3><p data-i18n="home.card2.d">Seawall cycling + curated breakfast overlooking the harbour.</p></div>
         <div class="card"><h3 data-i18n="home.card3.t">Coal Harbour Yacht Hour</h3><p data-i18n="home.card3.d">Sunset aperitivo aboard with sommelier-selected wines.</p></div>
       </div>
-    </section>
-  </section>
+  </section> <!-- fin Signature Experiences -->
+
+
+    <!-- HOW IT WORKS -->
+<section class="section">
+  <h2 data-i18n="home.hiw.title">How it works</h2>
+  <div class="grid-3">
+    <div class="card" style="text-align:center">
+      <div style="font-size:40px;color:var(--gold1)">📝</div>
+      <h3 data-i18n="home.hiw.ask.t">Ask</h3>
+      <p data-i18n="home.hiw.ask.d">Submit your request in under a minute via Orlen portal.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:40px;color:var(--gold1)">💡</div>
+      <h3 data-i18n="home.hiw.propose.t">Propose</h3>
+      <p data-i18n="home.hiw.propose.d">Partners send curated offers, matched to your needs.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:40px;color:var(--gold1)">✨</div>
+      <h3 data-i18n="home.hiw.confirm.t">Confirm</h3>
+      <p data-i18n="home.hiw.confirm.d">Accept with one click, we handle everything discreetly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ORLEN -->
+<section class="section">
+  <h2 data-i18n="home.why.title">Why Orlen</h2>
+  <div class="grid-3">
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="home.why.discretion.t">Discretion</h3>
+      <p data-i18n="home.why.discretion.d">Confidentiality-by-design. NDAs available on request.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="home.why.partners.t">Verified partners</h3>
+      <p data-i18n="home.why.partners.d">Every partner is vetted for quality and reliability.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="home.why.fast.t">Fast response</h3>
+      <p data-i18n="home.why.fast.d">Average reply within 16 minutes, 24/7 availability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP PREVIEW -->
+<section class="section">
+  <h2 data-i18n="home.membership.title">Membership</h2>
+  <div class="grid-3">
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="plan.essential.t">Essential</h3>
+      <p data-i18n="plan.essential.p">CAD 150 / month</p>
+      <p data-i18n="plan.essential.l2">Dining & driver, business-hours concierge.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="plan.elite.t">Elite</h3>
+      <p data-i18n="plan.elite.p">CAD 350 / month</p>
+      <p data-i18n="plan.elite.l2">Priority handling, evenings & weekends.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 data-i18n="plan.bespoke.t">Bespoke</h3>
+      <p data-i18n="plan.bespoke.p">Custom</p>
+      <p data-i18n="plan.bespoke.l2">Dedicated concierge, property & events.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <a href="#/membership" class="btn primary" data-i18n="home.membership.cta">See membership details</a>
+  </div>
+</section>
+
+<section data-view="services" class="view" hidden>
+  ...
+
 
   <!-- SERVICES -->
   <section data-view="services" class="view" hidden>
@@ -771,6 +841,18 @@ onEnterView();
 /* ========= I18N ========= */
 const I18N = {
   en: {
+    "home.hiw.title":"How it works",
+  "home.hiw.ask.t":"Ask","home.hiw.ask.d":"Submit your request in under a minute via Orlen portal.",
+  "home.hiw.propose.t":"Propose","home.hiw.propose.d":"Partners send curated offers, matched to your needs.",
+  "home.hiw.confirm.t":"Confirm","home.hiw.confirm.d":"Accept with one click, we handle everything discreetly.",
+
+  "home.why.title":"Why Orlen",
+  "home.why.discretion.t":"Discretion","home.why.discretion.d":"Confidentiality-by-design. NDAs available on request.",
+  "home.why.partners.t":"Verified partners","home.why.partners.d":"Every partner is vetted for quality and reliability.",
+  "home.why.fast.t":"Fast response","home.why.fast.d":"Average reply within 16 minutes, 24/7 availability.",
+
+  "home.membership.title":"Membership",
+  "home.membership.cta":"See membership details"
     "nav.home":"Home","nav.services":"Services","nav.membership":"Membership","nav.request":"Request","nav.contact":"Contact","nav.login":"Login",
     "nav.portal":"My portal","nav.logout":"Logout",
     "hero.title":"Effortless access to the exceptional.","hero.lead":"Priority dining, private drivers, wellness & clinics, Whistler escapes — handled discreetly and fast.","hero.ctaPrimary":"Create a request","hero.ctaSecondary":"Membership",
@@ -796,6 +878,18 @@ const I18N = {
     "cat.dine":"Fine Dining","cat.driver":"Private Driver","cat.well":"Wellness","cat.whistler":"Whistler & Ski","cat.events":"Events","cat.property":"Property & Staff"
   },
   fr: {
+    "home.hiw.title":"Comment ça marche",
+  "home.hiw.ask.t":"Demander","home.hiw.ask.d":"Soumettez votre demande en moins d’une minute via Orlen.",
+  "home.hiw.propose.t":"Proposer","home.hiw.propose.d":"Nos partenaires envoient des offres adaptées à vos besoins.",
+  "home.hiw.confirm.t":"Confirmer","home.hiw.confirm.d":"Acceptez en un clic, nous gérons tout avec discrétion.",
+
+  "home.why.title":"Pourquoi Orlen",
+  "home.why.discretion.t":"Discrétion","home.why.discretion.d":"Confidentialité intégrée. NDA disponibles sur demande.",
+  "home.why.partners.t":"Partenaires vérifiés","home.why.partners.d":"Chaque partenaire est sélectionné pour sa qualité.",
+  "home.why.fast.t":"Réactivité","home.why.fast.d":"Réponse moyenne en 16 minutes, disponible 24/7.",
+
+  "home.membership.title":"Abonnement",
+  "home.membership.cta":"Voir les détails d’abonnement"
     "nav.home":"Accueil","nav.services":"Services","nav.membership":"Abonnement","nav.request":"Demande","nav.contact":"Contact","nav.login":"Connexion",
     "nav.portal":"Mon espace","nav.logout":"Déconnexion",
     "hero.title":"Accès sans effort à l’exceptionnel.","hero.lead":"Restaurants prioritaires, chauffeurs privés, bien-être & cliniques, escapades à Whistler — avec discrétion et rapidité.","hero.ctaPrimary":"Créer une demande","hero.ctaSecondary":"Abonnement",
